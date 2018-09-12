@@ -2,15 +2,7 @@ import './css/signup.scss'
 import React, { Component } from 'react';
 import { Paper, Typography, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { hot } from 'react-hot-loader';
-
-function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-function validatePassword(pass){
-    return pass.length >=6 ;
-}
-
+import {validateEmail,validatePassword} from './Utils.js';
 class Login extends Component {
     constructor(props) {
         super(props);
