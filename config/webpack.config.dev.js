@@ -66,6 +66,7 @@ module.exports = {
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+    crossOriginLoading: 'anonymous',
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -211,6 +212,13 @@ module.exports = {
       // ** STOP ** Are you adding a new loader?
       // Make sure to add the new loader(s) before the "file" loader.
     ],
+  },
+  devServer: {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      }
   },
   plugins: [
     // Makes some environment variables available in index.html.

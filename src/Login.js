@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Paper, Typography, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { hot } from 'react-hot-loader';
 import {validateEmail,validatePassword} from './Utils.js';
+import * as firebase from 'firebase';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +16,7 @@ class Login extends Component {
         this.handleEmailBlur = this.handleEmailBlur.bind(this);
         this.handlePasswordBlur = this.handlePasswordBlur.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleSubmit =this.handleSubmit.bind(this);
     }
     handleEmailChange(event) {
         this.setState({
@@ -48,6 +50,20 @@ class Login extends Component {
             });
         }
     }
+    handleSubmit(event){
+        if(!validateEmail(this.state.email) && !validatePassword(this.state.pass)){
+            this.setState({
+                errorMsg:'Invalid Credentials',
+            });
+        }else{
+            firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.pass).catch(
+                function(error){
+                    console.log("Firebase not working");
+                    console.log(error.message);
+                }
+            );
+        }
+    }
     render() {
         return (
             <Paper elevation={1} className='signin'>
@@ -64,7 +80,7 @@ class Login extends Component {
                         <Input type='password' id='password' name='password' onChange={this.handlePasswordChange} onBlur={this.handlePasswordBlur} 
                             value = {this.state.pass} autoComplete='password' autoFocus />
                     </FormControl>
-                    <Button type='submit' variant='raised' fullWidth margin='normal'
+                    <Button type='submit' onClick={this.handleSubmit} variant='raised' fullWidth margin='normal'
                         style={{ marginTop: '1em' }}>
                         Login
                     </Button>

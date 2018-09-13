@@ -7,6 +7,16 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Toolbar, Drawer,List,ListItem,ListItemText } from '@material-ui/core';
 import {hot} from 'react-hot-loader';
+import * as firebase from 'firebase';
+const config = {
+  apiKey: "AIzaSyBw0sjgahg2TOnLsnKwVplktXTlc4PPYLw",
+  authDomain: "cribbay.firebaseapp.com",
+  databaseURL: "https://cribbay.firebaseio.com",
+  projectId: "cribbay",
+  storageBucket: "cribbay.appspot.com",
+  messagingSenderId: "837872881114"
+};
+firebase.initializeApp(config);
 class App extends Component {
   constructor(props){
     super(props);
@@ -60,5 +70,4 @@ class App extends Component {
     );
   }
 }
-
 export default hot(module)(App);
