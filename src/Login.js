@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Paper, Typography, FormControl, InputLabel, Input, Button } from '@material-ui/core';
 import { hot } from 'react-hot-loader';
 import {validateEmail,validatePassword} from './Utils.js';
-import * as firebase from 'firebase';
+import fire from './fire';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -56,7 +56,7 @@ class Login extends Component {
                 errorMsg:'Invalid Credentials',
             });
         }else{
-            firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.pass).catch(
+            fire.auth().signInWithEmailAndPassword(this.state.email,this.state.pass).catch(
                 function(error){
                     console.log("Firebase not working");
                     console.log(error.message);
@@ -80,7 +80,7 @@ class Login extends Component {
                         <Input type='password' id='password' name='password' onChange={this.handlePasswordChange} onBlur={this.handlePasswordBlur} 
                             value = {this.state.pass} autoComplete='password' autoFocus />
                     </FormControl>
-                    <Button type='submit' onClick={this.handleSubmit} variant='raised' fullWidth margin='normal'
+                    <Button onClick={this.handleSubmit} variant='raised' fullWidth margin='normal'
                         style={{ marginTop: '1em' }}>
                         Login
                     </Button>

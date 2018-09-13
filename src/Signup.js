@@ -3,6 +3,7 @@ import { validateEmail, validatePassword } from './Utils.js';
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Paper, Typography, FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import fire from './fire';
 
 class SignUp extends Component {
     constructor(props) {
